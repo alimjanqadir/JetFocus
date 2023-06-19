@@ -8,7 +8,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetfocus.R
 
-class Task2 {
+class Task3 {
     // 改变图像的大小到96dp
     @Composable
     fun Card() {
