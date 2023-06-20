@@ -8,20 +8,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetfocus.R
 
-// 在原有的基础上文字上面再加一个图片，图片ID为R.drawable.jetpack_compose
-@Composable
-fun Card() {
-    Column {
-        Image(
-            painter = painterResource(R.drawable.jetpack_compose),
-            contentDescription = null
-        )
-        Text("Hello World")
-    }
-}
+/*熟悉布局：Column。*/
+class Task2 {
+    // TODO("1. 把“Hello World”的文字换成“Andy Holloway”的姓名")
+    // TODO("2. 然后文字上方加一个图片，用已有的资源R.drawable.andy")
+    // TODO("3. 最后把HelloWorld的函数名换成UserInfoCard")
 
-@Composable
-@Preview()
-fun Preview() {
-    Card()
+    @Composable
+    fun UserInfoCard() {
+        Column {
+            Image(
+                painter = painterResource(R.drawable.andy),
+                contentDescription = null)
+            Text("Andy Holloway")
+        }
+    }
+
+    @Composable
+    @Preview()
+    fun Preview() {
+        UserInfoCard()
+    }
 }
