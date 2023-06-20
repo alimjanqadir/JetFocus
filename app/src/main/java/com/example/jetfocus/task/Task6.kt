@@ -24,21 +24,25 @@ class Task6 {
     // 把Column包含在TaskTheme和Surface里面
     @Composable
     fun UI() {
-        Column(
-            modifier = Modifier.padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Image(
-                modifier = Modifier
-                    .size(96.dp)
-                    .clip(CircleShape),
-                painter = painterResource(R.drawable.jetpack_compose),
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Hello World",
-            )
+        TaskTheme {
+            Surface {
+                Column(
+                    modifier = Modifier.padding(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .size(96.dp)
+                            .clip(CircleShape),
+                        painter = painterResource(R.drawable.jetpack_compose),
+                        contentDescription = null
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Hello World",
+                    )
+                }
+            }
         }
     }
 
