@@ -29,3 +29,14 @@ fun TaskTheme(
         content = content
     )
 }
+
+@Composable
+fun JetFocusTheme(
+    useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit
+) {
+    val colors = if (useDarkTheme) DarkColors else LightColors
+    MaterialTheme(
+        colorScheme = colors,
+        content = content
+    )
+}
