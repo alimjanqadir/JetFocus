@@ -1,9 +1,12 @@
 package com.example.jetfocus.task
 
 import android.content.res.Configuration
+import android.provider.Contacts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,26 +23,43 @@ import androidx.compose.ui.unit.dp
 import com.example.jetfocus.R
 import com.example.jetfocus.ui.theme.TaskTheme
 
+/*显示大量数据*/
 class Task6 {
-    // 把Column包含在TaskTheme和Surface里面
+    // TODO(多次复制UserCardInfo放在Colum布局里面创建一个纵向列表)
+    // TODO(用repeat函数重复UserInfoCard并观察列表的滚动)
+
     @Composable
     fun UI() {
-        Column(
-            modifier = Modifier.padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Image(
-                modifier = Modifier
-                    .size(96.dp)
-                    .clip(CircleShape),
-                painter = painterResource(R.drawable.jetpack_compose),
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Hello World",
-            )
+
+    }
+
+    @Composable
+    fun UserInfoCard() {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier.padding(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(56.dp)
+                        .clip(CircleShape),
+                    painter = painterResource(R.drawable.andy),
+                    contentDescription = null
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text("Andy Holloway")
+            }
+            Column(modifier = Modifier.padding(vertical = 12.dp)) {
+                Text("Android Developer")
+                Spacer(modifier = Modifier.height(10.dp))
+                Text("Andy 是相当有经验的安卓开发者，他参与了Google的各类大型项目，他喜欢游泳和烘培。")
+            }
         }
+
+
+
+
     }
 
     @Composable
@@ -51,6 +71,6 @@ class Task6 {
         name = "Dark Mode",
     )
     fun Preview() {
-        UI()
+        Contacts.Intents.UI()
     }
 }
