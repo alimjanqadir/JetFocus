@@ -71,6 +71,6 @@ class Task6 {
         name = "Dark Mode",
     )
     fun Preview() {
-        Contacts.Intents.UI()
+        UI()
     }
 }
