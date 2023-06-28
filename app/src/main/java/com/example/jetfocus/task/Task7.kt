@@ -31,11 +31,9 @@ class Task7 {
     // TODO("把用显示列表用的Column改为LazyColumn，观察他的滚动行为")
     @Composable
     fun UI() {
-        LazyColumn(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             repeat(100) {
-                item {
-                    UserInfoCard()
-                }
+                UserInfoCard()
             }
         }
     }
