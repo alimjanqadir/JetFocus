@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -32,7 +33,13 @@ class Task8 {
     // TODO("用LazyRow里用repeat函数创建100个UserInfoCard组件")
     @Composable
     fun UI() {
-
+        LazyRow {
+            repeat(100) {
+                item {
+                    UserInfoCard()
+                }
+            }
+        }
     }
 
     @Composable
