@@ -14,7 +14,7 @@ import com.example.jetfocus.ui.theme.TaskTheme
 
 // Grids
 class Task9 {
-    // TODO("用LazyVerticalGrid实现网格性数据显示")
+    // TODO("用LazyVerticalGrid实现3*3的网格数据显示")
     // TODO("如果用LazyHorizontalGrid会有什么不一样")
     // TODO("也试试用LazyVerticalStaggeredGrid和LazyHorizontalStaggeredGrid。")
     @Composable
