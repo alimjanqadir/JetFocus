@@ -1,7 +1,6 @@
 package com.example.jetfocus.task
 
 import android.content.res.Configuration
-import android.provider.Contacts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,7 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetfocus.R
-import com.example.jetfocus.ui.theme.TaskTheme
 
 /*显示大量数据*/
 class Task6 {
@@ -56,10 +53,6 @@ class Task6 {
                 Text("Andy 是相当有经验的安卓开发者，他参与了Google的各类大型项目，他喜欢游泳和烘培。")
             }
         }
-
-
-
-
     }
 
     @Composable
