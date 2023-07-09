@@ -22,7 +22,6 @@ import com.example.jetfocus.R
 
 // Modifiers。
 class Task4 {
-    // TODO(调整各个视图的大小，对齐，左右上下空间使界面更加整齐，然后把图片改成圆角。)
     @Composable
     fun UserInfoCard() {
         Row(modifier = Modifier.fillMaxWidth()) {
