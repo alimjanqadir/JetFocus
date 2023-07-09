@@ -29,7 +29,6 @@ import com.example.jetfocus.ui.theme.TaskTheme
 class Task6 {
     @Composable
     fun UI() {
-        val scrollState = rememberScrollState()
         Column {
             repeat(100) {
                 UserInfoCard()
