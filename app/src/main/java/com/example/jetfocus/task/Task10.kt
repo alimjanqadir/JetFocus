@@ -1,7 +1,6 @@
 package com.example.jetfocus.task
 
 import android.content.res.Configuration
-import android.widget.CheckBox
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -16,8 +15,8 @@ import com.example.jetfocus.ui.theme.TaskTheme
 class Task10 {
     @Composable
     fun UI() {
-        var isChecked by remember { mutableStateOf(false) }
-        Checkbox(checked = isChecked, onCheckedChange = { isChecked = !isChecked })
+        var isChecked by remember { mutableStateOf(true) }
+        Checkbox(checked = isChecked, onCheckedChange = { isChecked = it })
     }
 
     @Composable
