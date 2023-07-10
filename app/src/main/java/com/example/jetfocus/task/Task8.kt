@@ -26,7 +26,7 @@ class Task8 {
     // TODO("用LazyRow里用repeat函数创建100个UserInfoCardSimple组件")
     @Composable
     fun UI() {
-        UserInfoCardSimple()
+
     }
 
     @Composable
