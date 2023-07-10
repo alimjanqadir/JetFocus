@@ -17,20 +17,18 @@ class Task9 {
     // TODO("用LazyVerticalGrid实现3*3的网格数据显示")
     // TODO("如果用LazyHorizontalGrid会有什么不一样")
     // TODO("也试试用LazyVerticalStaggeredGrid和LazyHorizontalStaggeredGrid。")
+    // Tips: 用SampleData文件的数据
     @Composable
     fun UI() {
 
     }
 
     @Composable
-    fun UserInfoCard() {
-        Column {
+    fun UserAvatar(user: User) {
             Image(
-                painter = painterResource(R.drawable.andy),
+                painter = painterResource(user.imageId),
                 contentDescription = null
             )
-            Text("Andy Holloway")
-        }
     }
 
     @Composable
