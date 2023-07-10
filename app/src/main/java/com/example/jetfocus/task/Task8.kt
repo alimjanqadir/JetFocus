@@ -1,20 +1,11 @@
 package com.example.jetfocus.task
 
 import android.content.res.Configuration
-import android.provider.Contacts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,23 +20,25 @@ import com.example.jetfocus.ui.theme.TaskTheme
 
 /* LazyRow */
 class Task8 {
-    // TODO("用LazyRow实现水平方向的大量数据显示")
-    // TODO("用LazyRow里用repeat函数创建100个UserInfoCard组件")
     @Composable
     fun UI() {
         LazyRow {
             repeat(100) {
                 item {
-                    UserInfoCard()
+                    UserInfoCardSimple()
                 }
             }
         }
     }
 
     @Composable
-    fun UserInfoCard() {
-        Column {
+    fun UserInfoCardSimple() {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Image(
+                modifier = Modifier.clip(CircleShape),
                 painter = painterResource(R.drawable.andy),
                 contentDescription = null
             )
