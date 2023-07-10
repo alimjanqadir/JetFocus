@@ -9,7 +9,7 @@ import com.example.jetfocus.ui.theme.TaskTheme
 // 重组和状态
 class Task10 {
     // TODO("显示一个Checkbox组件")
-    // TODO("为什么对组件的操作没有任何效果")
+    // TODO("为什么对视图的操作没有任何效果？")
     @Composable
     fun UI() {
 
