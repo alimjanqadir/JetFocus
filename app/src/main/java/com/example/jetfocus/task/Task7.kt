@@ -28,12 +28,11 @@ import com.example.jetfocus.ui.theme.TaskTheme
 
 /* LazyColumn */
 class Task7 {
-    // TODO("把用显示列表用的Column改为LazyColumn，观察他的滚动行为")
     @Composable
     fun UI() {
-        LazyColumn(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            repeat(100) {
-                item {
+        LazyColumn {
+            repeat(1000) {
+                item(it) {
                     UserInfoCard()
                 }
             }
