@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,38 +22,35 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.jetfocus.R
+import com.example.jetfocus.task.User
+import com.example.jetfocus.task.users
 
 @Preview
 @Composable
 fun MoreComplexDemo() {
     var count by remember { mutableStateOf(0) }
     Surface {
-        Column {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Row {
                 Button(onClick = {
                     count += 1
                 }) {
-                    Text("Click")
+                    Text("Add")
                 }
                 Button(onClick = {
                     count -= 1
                 }) {
-                    Text("Click 2")
+                    Text("Remove")
                 }
             }
             repeat(count) {
-                UserInfoItem(
-                    name = "Andy",
-                    job = "安卓开发者",
-                    imageId = R.drawable.andy,
-                    intro = "写代码，游泳，他还每周去足球场踢一场比赛。"
-                )
+                UserInfoItem(users[it])
             }
         }
     }
@@ -58,23 +58,20 @@ fun MoreComplexDemo() {
 
 @Composable
 private fun UserInfoItem(
-    modifier: Modifier = Modifier,
-    imageId: Int,
-    name: String,
-    job: String,
-    intro: String
+    user: User,
+    modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier) {
-        UserAvatar(modifier = Modifier.padding(10.dp), imageId = imageId, name)
+        UserInfoSimple(modifier = Modifier.padding(10.dp), imageId = user.imageId, user.name)
         Column(modifier = Modifier.padding(horizontal = 10.dp)) {
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-                "职位：$job", style = TextStyle(
+                "职位：${user.title}", style = TextStyle(
                     fontSize = 24.sp
                 )
             )
             Text(
-                text = "爱好：$intro", style = TextStyle(
+                text = "爱好：${user.intro}", style = TextStyle(
                     fontSize = 18.sp,
                 )
             )
@@ -83,12 +80,13 @@ private fun UserInfoItem(
 }
 
 @Composable
-private fun UserAvatar(modifier: Modifier, imageId: Int, name: String) {
+private fun UserInfoSimple(modifier: Modifier, imageId: Int, name: String) {
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             modifier = Modifier
                 .size(100.dp, 100.dp)
                 .clip(CircleShape),
+            contentScale = ContentScale.Crop,
             painter = painterResource(imageId),
             contentDescription = null
         )
