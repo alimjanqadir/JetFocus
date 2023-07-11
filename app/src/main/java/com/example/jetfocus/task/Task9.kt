@@ -1,4 +1,5 @@
 @file:Suppress("unused")
+@file:OptIn(ExperimentalFoundationApi::class)
 
 package com.example.jetfocus.task
 
@@ -20,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import com.example.jetfocus.ui.theme.TaskTheme
 
 // Grids
-@OptIn(ExperimentalFoundationApi::class)
 class Task9 {
     @Composable
     fun UI() {
@@ -95,7 +95,9 @@ class Task9 {
 
     @Composable
     fun UserAvatar(
-        user: User, modifier: Modifier = Modifier, contentScale: ContentScale = ContentScale.Fit
+        user: User,
+        modifier: Modifier = Modifier,
+        contentScale: ContentScale = ContentScale.Fit
     ) {
         Image(
             modifier = modifier,
@@ -114,7 +116,7 @@ class Task9 {
         name = "Dark Mode",
     )
     @Preview(
-        name = "Tablet",
+        name = "Tablet Portrait",
         device = "spec:width=1280dp,height=800dp,dpi=480,orientation=portrait",
     )
     @Preview(
