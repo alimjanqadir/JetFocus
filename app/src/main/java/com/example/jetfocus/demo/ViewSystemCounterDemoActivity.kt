@@ -2,6 +2,7 @@ package com.example.jetfocus.demo
 
 import android.app.Activity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import com.example.jetfocus.R
 
@@ -11,10 +12,15 @@ class ViewSystemDemoActivity : Activity() {
         setContentView(R.layout.activity_view_system_demo)
 
         var counter = 0
-        val textview = findViewById<TextView>(R.id.textview)
-        val button = findViewById<TextView>(R.id.button)
+        val textview = findViewById<TextView>(R.id.counterTextview)
+        val addButton = findViewById<Button>(R.id.addButton)
+        val removeButton = findViewById<Button>(R.id.removeButton)
 
-        button.setOnClickListener {
+        addButton.setOnClickListener {
+            counter += 1
+            textview.setText("$counter")
+        }
+        removeButton.setOnClickListener {
             counter += 1
             textview.setText("$counter")
         }
