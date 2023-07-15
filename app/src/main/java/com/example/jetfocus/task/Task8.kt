@@ -23,10 +23,8 @@ class Task8 {
     @Composable
     fun UI() {
         LazyRow {
-            repeat(100) {
-                item {
-                    UserInfoCardSimple()
-                }
+            items(1000) {
+                UserInfoCardSimple()
             }
         }
     }
