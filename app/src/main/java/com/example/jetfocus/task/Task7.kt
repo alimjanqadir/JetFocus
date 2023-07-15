@@ -1,7 +1,6 @@
 package com.example.jetfocus.task
 
 import android.content.res.Configuration
-import android.provider.Contacts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,9 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,14 +24,13 @@ import com.example.jetfocus.R
 import com.example.jetfocus.ui.theme.TaskTheme
 
 /* LazyColumn */
+@Suppress("unused")
 class Task7 {
     @Composable
     fun UI() {
         LazyColumn {
-            repeat(1000) {
-                item(it) {
-                    UserInfoCard()
-                }
+            items(1000) {
+                UserInfoCard()
             }
         }
     }
