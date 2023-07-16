@@ -6,11 +6,12 @@ package com.example.jetfocus.task
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,72 +24,56 @@ import com.example.jetfocus.ui.theme.TaskTheme
 // Grids
 class Task9 {
     @Composable
-    fun UI() {
+    fun Ui() {
         LazyVerticalGrid(columns = GridCells.Fixed(3)) {
-            users.forEach { user ->
-                item {
-                    UserAvatar(user)
-                }
+            items(users) {
+                UserAvatar(it)
             }
         }
     }
 
     @Composable
-    fun UI1() {
+    fun Ui1() {
         LazyVerticalGrid(columns = GridCells.Adaptive(80.dp)) {
-            users.forEach { user ->
-                item {
-                    UserAvatar(user)
-                }
+            items(users) {
+                UserAvatar(it)
             }
         }
     }
 
     @Composable
-    fun UI2() {
+    fun Ui2() {
         LazyVerticalGrid(columns = GridCells.Fixed(3)) {
-            users.forEach { user ->
-                item {
-                    UserAvatar(
-                        modifier = Modifier.size(80.dp),
-                        contentScale = ContentScale.Crop,
-                        user = user
-                    )
-                }
+            items(users) {
+                UserAvatar(it)
             }
         }
     }
 
     @Composable
-    fun UI3() {
+    fun Ui3() {
         LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Fixed(3)) {
-            users.forEach { user ->
-                item {
-                    UserAvatar(user)
-                }
+            items(users) {
+                UserAvatar(it)
             }
         }
     }
 
     @Composable
-    fun UI4() {
+    fun Ui4() {
         LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Fixed(3)) {
-            users.forEach { user ->
-                item {
-                    UserAvatar(user, contentScale = ContentScale.FillWidth)
-                }
+            items(users) {
+                UserAvatar(it)
             }
         }
     }
 
 
     @Composable
-    fun UI5() {
+    fun Ui5() {
         LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Adaptive(80.dp)) {
-            users.forEach { user ->
-                item {
-                    UserAvatar(user)
-                }
+            items(users) {
+                UserAvatar(it)
             }
         }
     }
@@ -126,7 +111,7 @@ class Task9 {
     fun Preview() {
         TaskTheme {
             Surface {
-                UI()
+                Ui()
             }
         }
     }
