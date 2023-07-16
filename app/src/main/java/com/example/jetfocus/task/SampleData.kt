@@ -2,7 +2,7 @@ package com.example.jetfocus.task
 
 import com.example.jetfocus.R
 
-data class User(val imageId: Int, val name: String, val title: String, val intro: String)
+data class User(val imageId: Int, val name: String, val job: String, val intro: String)
 
 val users = listOf(
     User(R.drawable.avatar_1, "资涵荔", "打桩机操作员", "热情的电视爱好者。 自由网络专家。 骄傲的作家。 时髦友好的推特狂热分子。"),
