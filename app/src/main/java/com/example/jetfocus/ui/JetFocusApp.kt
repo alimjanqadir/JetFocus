@@ -14,14 +14,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetfocus.ui.TimerState.INITIAL
+import com.example.jetfocus.ui.TimerState.RESUME
 import com.example.jetfocus.ui.TimerState.START
 import com.example.jetfocus.ui.TimerState.STOP
 import com.example.jetfocus.ui.theme.JetFocusTheme
@@ -45,48 +44,70 @@ fun TimeScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.align(Alignment.Center)
         ) {
-            var timerState: TimerState by remember { mutableStateOf(INITIAL) }
-            CountDownTimer(
-                duration = 25.minutes, state = timerState
+            var timerState by rememberTimerState()
+            CountDownTimer(duration = 25.minutes, state = timerState)
+            Spacer(modifier = Modifier.height(12.dp))
+            TimerControl(
+                state = timerState,
+                onStart = { timerState = START },
+                onResume = { timerState = RESUME },
+                onStop = { timerState = STOP },
+                onCancel = { timerState = INITIAL },
             )
             Spacer(modifier = Modifier.height(12.dp))
-            when (timerState) {
-                INITIAL -> {
-                    Button(onClick = {
-                        timerState = START
-                    }) {
-                        Text("Start")
-                    }
-                }
-
-                START -> {
-                    Button(onClick = {
-                        timerState = STOP
-                    }) {
-                        Text("Stop")
-                    }
-                }
-
-                STOP -> {
-                    Row(
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Button(onClick = {
-                            timerState = START
-                        }) {
-                            Text("Resume")
-                        }
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Button(onClick = {
-                            timerState = INITIAL
-                        }) {
-                            Text("Cancel")
-                        }
-                    }
-                }
-            }
-            Spacer(modifier = Modifier.height(12.dp))
         }
+    }
+}
+
+@Composable
+private fun TimerControl(
+    state: TimerState,
+    onStart: () -> Unit,
+    onResume: () -> Unit,
+    onStop: () -> Unit,
+    onCancel: () -> Unit
+) {
+    @Composable
+    fun StartButton() {
+        Button(onClick = {
+            onStart()
+        }) {
+            Text("Start")
+        }
+    }
+
+    @Composable
+    fun StopButton() {
+        Button(onClick = {
+            onStop()
+        }) {
+            Text("Stop")
+        }
+    }
+
+    @Composable
+    fun ResumeLayout() {
+        Row(
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(onClick = {
+                onResume()
+            }) {
+                Text("Resume")
+            }
+            Spacer(modifier = Modifier.width(12.dp))
+            Button(onClick = {
+                onCancel()
+            }) {
+                Text("Cancel")
+            }
+        }
+    }
+    when (state) {
+        INITIAL -> StartButton()
+        START -> StopButton()
+        STOP -> ResumeLayout()
+        RESUME -> StartButton()
     }
 }
 

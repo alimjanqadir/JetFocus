@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import com.example.jetfocus.ui.TimerState.INITIAL
+import com.example.jetfocus.ui.TimerState.RESUME
 import com.example.jetfocus.ui.TimerState.START
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -50,22 +51,30 @@ fun Ticker(
 }
 
 enum class TimerState {
-    INITIAL, START, STOP
+    INITIAL, START, STOP, RESUME
 }
+
+@Composable
+fun rememberTimerState() = remember { mutableStateOf(INITIAL) }
 
 @Composable
 fun CountDownTimer(
     modifier: Modifier = Modifier,
     style: TextStyle = MaterialTheme.typography.displayLarge,
     duration: Duration,
+    onFinish: () -> Unit = {},
     state: TimerState = INITIAL
 ) {
     var countDownInMills: Long by remember { mutableStateOf(duration.inWholeMilliseconds) }
-    if(state == INITIAL) countDownInMills = duration.inWholeMilliseconds
+    fun resetValue() {
+        countDownInMills = duration.inWholeMilliseconds
+    }
+
+    if (state == INITIAL) resetValue()
     Box {
         Ticker(
             onTick = { countDownInMills -= 1.seconds.inWholeMilliseconds },
-            isOn = state == START
+            isOn = state == START || state == RESUME
         ) {
             val timerFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
             val formattedText = timerFormat.format(Date(countDownInMills))
