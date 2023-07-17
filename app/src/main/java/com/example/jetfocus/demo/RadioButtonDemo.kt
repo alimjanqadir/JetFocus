@@ -3,6 +3,7 @@ package com.example.jetfocus.demo
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -10,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -17,7 +19,6 @@ import androidx.compose.ui.unit.sp
 @Preview
 @Composable
 fun RadioButtonDemo() {
-
     Row(verticalAlignment = Alignment.CenterVertically) {
         RadioButton(true, onClick = {})
         Text(
@@ -33,7 +34,8 @@ fun RadioButtonDemo() {
 fun RadioGroupDemo() {
     val radioOptions = listOf("A", "B", "C")
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
-    Row {
+    val (a, b) = remember {mutableStateOf("")};
+    Row(Modifier.selectableGroup()) {
         radioOptions.forEach { text ->
             Row(
                 Modifier
@@ -41,12 +43,13 @@ fun RadioGroupDemo() {
                         selected = (text == selectedOption),
                         onClick = {
                             onOptionSelected(text)
-                        }
+                        },
+                        role = Role.RadioButton
                     )
             ) {
                 RadioButton(
                     selected = (text == selectedOption),
-                    onClick = { onOptionSelected(text) }
+                    onClick = null
                 )
                 Text(
                     text = text,
