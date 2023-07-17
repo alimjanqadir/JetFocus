@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         tools:targetApi="31">
         <activity
-            android:name=".demo.ViewSystemDemoActivity"
+            android:name=".demo.ViewSystemCounterDemoActivity"
             android:exported="true" />
         <activity
             android:name=".ui.MainActivity"
