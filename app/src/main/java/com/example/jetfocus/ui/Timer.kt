@@ -1,6 +1,7 @@
 package com.example.jetfocus.ui
 
 import android.icu.text.SimpleDateFormat
+import android.view.Choreographer
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -10,12 +11,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameMillis
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.AndroidUiFrameClock
 import androidx.compose.ui.text.TextStyle
 import com.example.jetfocus.ui.TimerState.INITIAL
 import com.example.jetfocus.ui.TimerState.RESUME
 import com.example.jetfocus.ui.TimerState.START
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Date
 import java.util.Locale
@@ -25,25 +27,21 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 fun Ticker(
     isOn: Boolean = false,
-    onTick: (tick: Int) -> Unit,
+    onTick: (tick: Long) -> Unit,
     duration: Duration = 1.seconds,
-    resetOnOff: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    var tick by remember { mutableStateOf(0) }
     LaunchedEffect(isOn) {
         if (isOn) {
             launch {
+                val androidUiFrameClock = AndroidUiFrameClock(Choreographer.getInstance())
+                var lastFrameDelta = androidUiFrameClock.withFrameMillis { it }
                 while (true) {
-                    delay(duration)
-                    tick += 1
-                    onTick(tick)
+                    androidUiFrameClock.withFrameMillis { currentFrameDelta ->
+                        onTick(currentFrameDelta - lastFrameDelta)
+                        lastFrameDelta = currentFrameDelta
+                    }
                 }
-            }
-        } else {
-            if (resetOnOff) {
-                tick = 0
-                onTick(tick)
             }
         }
     }
@@ -73,7 +71,10 @@ fun CountDownTimer(
     if (state == INITIAL) resetValue()
     Box {
         Ticker(
-            onTick = { countDownInMills -= 1.seconds.inWholeMilliseconds },
+            onTick = {
+                countDownInMills -= it
+                println("tick: $it")
+            },
             isOn = state == START || state == RESUME
         ) {
             val timerFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
