@@ -107,7 +107,7 @@ private fun TimerControl(
         INITIAL -> StartButton()
         START -> StopButton()
         STOP -> ResumeLayout()
-        RESUME -> StartButton()
+        RESUME -> StopButton()
     }
 }
 
