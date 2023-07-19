@@ -1,7 +1,7 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 @file:Suppress("CanBeVal")
 
-package com.example.jetfocus.demo
+package com.example.jetfocus.demo.event1
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.example.jetfocus.R
-import com.example.jetfocus.demo.WeekDay.*
+import com.example.jetfocus.demo.event1.WeekDay.*
 
 enum class WeekDay {
     MON, TUE, WEN, THU, FRI, SAT, SUN

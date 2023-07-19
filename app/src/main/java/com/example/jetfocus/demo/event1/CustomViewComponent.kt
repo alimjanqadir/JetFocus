@@ -1,4 +1,4 @@
-package com.example.jetfocus.demo
+package com.example.jetfocus.demo.event1
 
 import android.content.Context
 import android.graphics.Canvas

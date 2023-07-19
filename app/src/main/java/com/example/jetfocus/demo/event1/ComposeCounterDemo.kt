@@ -1,4 +1,4 @@
-package com.example.jetfocus.demo
+package com.example.jetfocus.demo.event1
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
