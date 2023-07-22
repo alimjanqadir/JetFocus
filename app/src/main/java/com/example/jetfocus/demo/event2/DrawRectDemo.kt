@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -37,19 +36,18 @@ fun DrawRectDemo() {
                 val barWidth = size.width / 14
                 val barHeightPerLevel = size.height / 24f
                 val fullBarHeight = size.height
-                val padding = (size.width - barWidth) / 7
+                val padding = (size.width - barWidth * 7) / 7
                 repeat(7) {
-                    drawRoundRect(
+                    drawRect(
                         Color.White,
                         Offset(
-                            x = (barWidth + padding / 2) * it + padding / 4,
+                            x = (barWidth + padding) * it ,
                             y = fullBarHeight - (barHeightPerLevel * (8 + it))
                         ),
                         Size(
                             width = barWidth,
                             height = barHeightPerLevel * (8 + it)
                         ),
-                        CornerRadius(x = 10.dp.toPx(), y = 0f)
                     )
                 }
 
