@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
@@ -24,7 +25,7 @@ import com.example.jetfocus.ui.TimerState.RESUME
 import com.example.jetfocus.ui.TimerState.START
 import com.example.jetfocus.ui.TimerState.STOP
 import com.example.jetfocus.ui.theme.JetFocusTheme
-import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun JetFocusApp() {
@@ -45,7 +46,7 @@ fun TimeScreen() {
             modifier = Modifier.align(Alignment.Center)
         ) {
             var timerState by rememberTimerState()
-            CountDownTimer(duration = 25.minutes, state = timerState)
+            CountDownTimer(modifier = Modifier.padding(10.dp), duration = 24.seconds, state = timerState)
             Spacer(modifier = Modifier.height(12.dp))
             TimerControl(
                 state = timerState,
