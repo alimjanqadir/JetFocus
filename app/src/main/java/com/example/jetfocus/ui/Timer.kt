@@ -84,17 +84,15 @@ fun CountDownTimer(
     state: TimerState = INITIAL
 ) {
     var countDownDuration: Duration by remember { mutableStateOf(duration) }
-    var timerState: TimerState by remember { mutableStateOf(state) }
 
     fun resetValue() {
         countDownDuration = duration
     }
 
-    if (timerState == INITIAL) resetValue()
+    if (state == INITIAL) resetValue()
     if (countDownDuration < 0.seconds) {
         onFinish()
         resetValue()
-        timerState = INITIAL
     }
 
     Box(modifier = modifier
@@ -111,7 +109,7 @@ fun CountDownTimer(
 
             repeat(24) {
                 drawCircle(
-                    if ((timerState == START || state == RESUME) && it == dotPosition) Color.Yellow else Color.Red,
+                    if ((state == START || state == RESUME) && it == dotPosition) Color.Yellow else Color.Red,
                     radius = circleSize,
                     center = Offset(
                         x = (startX + (size.width / 2 - circleSize) * cos(degree)).toFloat(),
@@ -125,7 +123,7 @@ fun CountDownTimer(
         Ticker(
             onTick = {
                 countDownDuration -= it
-            }, duration = 1.seconds, isOn = timerState == START || state == RESUME
+            }, duration = 1.seconds, isOn = state == START || state == RESUME
         ) {
             val timerFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
             val formattedText = timerFormat.format(Date(countDownDuration.inWholeMilliseconds))
