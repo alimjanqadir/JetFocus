@@ -11,17 +11,15 @@ import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+
 @Preview(device = "spec:width=280dp,height=280dp,dpi=640")
 @Composable
 @ExperimentalTextApi
-fun DrawPathDemo() {
-    Box(
-        modifier = Modifier
-            .size(280.dp)
-            .background(Color.White)
-            .drawBehind {
-
-            }
-    )
+fun BezierCurveDemo() {
+    Box(modifier = Modifier
+        .size(280.dp)
+        .background(Color.White)
+        .drawBehind {
+        })
 }
 
