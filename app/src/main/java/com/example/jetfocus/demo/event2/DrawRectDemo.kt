@@ -50,7 +50,6 @@ fun DrawRectDemo() {
                         ),
                     )
                 }
-
             })
     }
 }
