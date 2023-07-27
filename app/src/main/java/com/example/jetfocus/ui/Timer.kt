@@ -23,9 +23,9 @@ import androidx.compose.ui.platform.AndroidUiFrameClock
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.jetfocus.ui.TimerState.INITIAL
-import com.example.jetfocus.ui.TimerState.RESUME
-import com.example.jetfocus.ui.TimerState.START
+import com.example.jetfocus.ui.TimerState.Initial
+import com.example.jetfocus.ui.TimerState.Resume
+import com.example.jetfocus.ui.TimerState.Start
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Date
@@ -68,31 +68,29 @@ fun Ticker(
 }
 
 enum class TimerState {
-    INITIAL, START, STOP, RESUME
+    Initial, Start, Stop, Resume
 }
 
 @Composable
-fun rememberTimerState() = remember { mutableStateOf(INITIAL) }
+fun rememberTimerState() = remember { mutableStateOf(Initial) }
 
 @Composable
 fun CountDownTimer(
     modifier: Modifier = Modifier,
+    state: TimerState = Initial,
+    onFinish: () -> Unit,
     style: TextStyle = MaterialTheme.typography.displayLarge,
     duration: Duration = 25.minutes,
-    onFinish: () -> Unit = {},
     contentAlignment: Alignment = Alignment.Center,
-    state: TimerState = INITIAL
 ) {
     var countDownDuration: Duration by remember { mutableStateOf(duration) }
-
     fun resetValue() {
         countDownDuration = duration
     }
-
-    if (state == INITIAL) resetValue()
-    if (countDownDuration < 0.seconds) {
-        onFinish()
+    if (state == Initial) resetValue()
+    if (countDownDuration <= 0.seconds) {
         resetValue()
+        onFinish()
     }
 
     Box(modifier = modifier
@@ -109,7 +107,7 @@ fun CountDownTimer(
 
             repeat(24) {
                 drawCircle(
-                    if ((state == START || state == RESUME) && it == dotPosition) Color.Yellow else Color.Red,
+                    if ((state == Start || state == Resume) && it == dotPosition) Color.Yellow else Color.Red,
                     radius = circleSize,
                     center = Offset(
                         x = (startX + (size.width / 2 - circleSize) * cos(degree)).toFloat(),
@@ -123,7 +121,7 @@ fun CountDownTimer(
         Ticker(
             onTick = {
                 countDownDuration -= it
-            }, duration = 1.seconds, isOn = state == START || state == RESUME
+            }, duration = 1.seconds, isOn = state == Start || state == Resume
         ) {
             val timerFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
             val formattedText = timerFormat.format(Date(countDownDuration.inWholeMilliseconds))
@@ -135,10 +133,12 @@ fun CountDownTimer(
 @Preview
 @Composable
 fun CountDownTimerPreview() {
+    var timerState by remember { mutableStateOf(Start) }
     CountDownTimer(
         modifier = Modifier.fillMaxWidth(),
+        state = timerState,
+        onFinish = { timerState = Initial },
+        duration = 5.seconds,
         style = MaterialTheme.typography.displayLarge,
-        duration = 24.seconds,
-        state = START
     )
 }
