@@ -7,10 +7,7 @@
         style="@style/Widget.Theme.JetFocus.CustomViewComponent"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:paddingLeft="20dp"
-        android:paddingBottom="40dp"
-        app:exampleDimension="24sp"
-        app:exampleDrawable="@android:drawable/ic_menu_add"
-        app:exampleString="Hello, CustomComponent" />
+
+     />
 
 </FrameLayout>
