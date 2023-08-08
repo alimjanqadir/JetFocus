@@ -1,17 +1,16 @@
 [versions]
-androidxComposeBom = "2023.04.01"
-androidxComposeMaterial = "1.4.3"
-androidxActivityCompose = "1.7.0"
-kotlinxCoroutinesAndroid = "1.6.4"
+androidxComposeBom = "2023.06.01"
+androidxActivityCompose = "1.7.2"
+kotlinxCoroutinesAndroid = "1.7.3"
 
 [libraries]
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
-androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "androidxComposeMaterial" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
-androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidxActivityCompose" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
