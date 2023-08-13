@@ -40,11 +40,11 @@ fun DrawRectDemo() {
                 repeat(7) {
                     drawRect(
                         Color.White,
-                        Offset(
-                            x = (barWidth + padding) * it ,
+                        topLeft = Offset(
+                            x = (barWidth + padding) * it,
                             y = fullBarHeight - (barHeightPerLevel * (8 + it))
                         ),
-                        Size(
+                        size = Size(
                             width = barWidth,
                             height = barHeightPerLevel * (8 + it)
                         ),
