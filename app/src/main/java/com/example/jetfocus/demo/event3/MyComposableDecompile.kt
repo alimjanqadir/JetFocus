@@ -1,16 +1,16 @@
-@file:Suppress("UNUSED_ANONYMOUS_PARAMETER", "NAME_SHADOWING")
+@file:Suppress("LocalVariableName", "UNUSED_ANONYMOUS_PARAMETER", "All", "unused", "NAME_SHADOWING")
 
 package com.example.jetfocus.demo.event3
 
 import androidx.compose.runtime.Composer
 
 fun MyComposableDecompile(composer: Composer, changed: Int) {
-    composer.startRestartGroup(123) // MyComposable开始重组范围
+    composer.startRestartGroup(123)  // 重组范围标记开始
     if (changed != 0 || !composer.skipping) {
         Card(
             /*一些参数被忽略 Modifier, shape, cardColor */
-            { composer, changed ->
-               content()
+            { composer, changed -> // ColumnScope
+                content()
             },
             composer, changed,
         )
