@@ -132,6 +132,108 @@ fun CountDownTimer(
 
 @Preview
 @Composable
+fun DottedCircle1() {
+    Box(modifier = Modifier
+        .drawBehind {
+            val circleSize = 10.dp.toPx()
+            var degree = 0.0
+            val degreesPerDot = 2 * PI / 24
+            repeat(24) {
+                drawCircle(
+                    Color.Red,
+                    radius = circleSize,
+                    center = Offset(
+                        x = size.width * cos(degree).toFloat(),
+                        y = size.height * sin(degree).toFloat(),
+                    )
+                )
+                degree += degreesPerDot
+            }
+        }
+        .aspectRatio(1f)) {
+    }
+}
+
+@Preview
+@Composable
+fun DottedCircle2() {
+    Box(modifier = Modifier
+        .drawBehind {
+            val circleSize = 10.dp.toPx()
+            var degree = 0.0
+            val degreesPerDot = 2 * PI / 24
+            repeat(24) {
+                drawCircle(
+                    Color.Red,
+                    radius = circleSize,
+                    center = Offset(
+                        x = size.width / 2 * cos(degree).toFloat(),
+                        y = size.height / 2 * sin(degree).toFloat(),
+                    )
+                )
+                degree += degreesPerDot
+            }
+        }
+        .aspectRatio(1f)) {
+    }
+}
+
+@Preview
+@Composable
+fun DottedCircle3() {
+    Box(modifier = Modifier
+        .drawBehind {
+            val circleSize = 10.dp.toPx()
+            var degree = 0.0
+            val degreesPerDot = 2 * PI / 24
+            val startX = size.width / 2
+            val startY = size.height / 2
+
+            repeat(24) {
+                drawCircle(
+                    Color.Red,
+                    radius = circleSize,
+                    center = Offset(
+                        x = startX + size.width / 2 * cos(degree).toFloat(),
+                        y = startY + size.height / 2 * sin(degree).toFloat(),
+                    )
+                )
+                degree += degreesPerDot
+            }
+        }
+        .aspectRatio(1f)) {
+    }
+}
+
+@Preview
+@Composable
+fun DottedCircle4() {
+    Box(modifier = Modifier
+        .drawBehind {
+            val circleSize = 10.dp.toPx()
+            var degree = 0.0
+            val degreesPerDot = 2 * PI / 24
+            val startX = size.width / 2
+            val startY = size.height / 2
+
+            repeat(24) {
+                drawCircle(
+                    Color.Red,
+                    radius = circleSize,
+                    center = Offset(
+                        x = startX + (size.width / 2 - circleSize) * cos(degree).toFloat(),
+                        y = startY + (size.height / 2 - circleSize) * sin(degree).toFloat(),
+                    )
+                )
+                degree += degreesPerDot
+            }
+        }
+        .aspectRatio(1f)) {
+    }
+}
+
+@Preview
+@Composable
 fun CountDownTimerPreview() {
     var timerState by remember { mutableStateOf(Start) }
     CountDownTimer(
