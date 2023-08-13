@@ -26,7 +26,7 @@ private class SampleWeekDayProvider: PreviewParameterProvider<WeekDay> {
 
 @Preview
 @Composable
-fun DeclarativeDemo(@PreviewParameter(SampleWeekDayProvider::class) today: WeekDay) {
+fun DeclarativeDemo(today: WeekDay) {
     when (today) {
         MON -> ImageWithBadge(color = Color.Green)
         TUE -> ImageWithBadge(color = Color.Yellow)
