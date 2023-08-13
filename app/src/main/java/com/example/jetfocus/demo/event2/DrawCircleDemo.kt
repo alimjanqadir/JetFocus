@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -39,7 +38,7 @@ fun DrawCircleDemo() {
 @Preview
 @Composable
 fun BouncingBallHorizontalDemo() {
-    var xSpeed by remember { mutableFloatStateOf(100f) }
+    var xSpeed by remember { mutableStateOf(100f) }
     var circleCenter by remember { mutableStateOf(Offset.Zero) }
     val radius = 20.dp
 
@@ -67,8 +66,8 @@ fun BouncingBallHorizontalDemo() {
 @Preview
 @Composable
 fun BouncingBallDemo() {
-    var xSpeed by remember { mutableFloatStateOf(100f) }
-    var ySpeed by remember { mutableFloatStateOf(100f) }
+    var xSpeed by remember { mutableStateOf(100f) }
+    var ySpeed by remember { mutableStateOf(100f) }
     var circleCenter by remember { mutableStateOf(Offset.Zero) }
     val radius = 20.dp
 
@@ -104,8 +103,8 @@ fun BouncingBallDemo() {
 @Preview
 @Composable
 fun BouncingBallRandomDemo() {
-    var xSpeed by remember { mutableFloatStateOf(100f) }
-    var ySpeed by remember { mutableFloatStateOf(100f) }
+    var xSpeed by remember { mutableStateOf(100f) }
+    var ySpeed by remember { mutableStateOf(100f) }
     var circleCenter by remember { mutableStateOf(Offset.Zero) }
 
     val radius = 20.dp

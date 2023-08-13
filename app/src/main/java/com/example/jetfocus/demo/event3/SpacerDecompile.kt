@@ -3,9 +3,6 @@
 package com.example.jetfocus.demo.event3
 
 import androidx.compose.runtime.Composer
-import androidx.compose.runtime.CompositionLocalMap
-import androidx.compose.runtime.InternalComposeApi
-import androidx.compose.runtime.SkippableUpdater
 import androidx.compose.runtime.Updater
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -20,6 +17,8 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 
 /*准备节点需要的Modifier链*/
+
+
 
 
 fun SpacerDecompile(modifier: Modifier, composer: Composer, changed: Int) {
@@ -57,6 +56,10 @@ fun SpacerDecompile(modifier: Modifier, composer: Composer, changed: Int) {
     composer.endReplaceableGroup() // Spacer 可替换组结束
 }
 
+private fun <T> Updater<T>.set(value: Int, block: T.(CompositionLocalMap) -> Unit) {
+    TODO("Not yet implemented")
+}
+
 
 private fun <T> Updater<T>.update() {
     TODO("Not yet implemented")
@@ -78,6 +81,8 @@ private object SpacerMeasurePolicy : MeasurePolicy {
         }
     }
 }
+private val Composer.currentCompositionLocalMap: Int
+    get() = TODO()
 
 internal interface ComposeUiNode {
     var measurePolicy: MeasurePolicy
@@ -113,4 +118,8 @@ internal interface ComposeUiNode {
         val SetCompositeKeyHash: ComposeUiNode.(Int) -> Unit =
             { this.compositeKeyHash = it }
     }
+}
+
+class CompositionLocalMap {
+
 }
