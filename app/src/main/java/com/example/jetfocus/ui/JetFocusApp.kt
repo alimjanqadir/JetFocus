@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
@@ -19,10 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.jetfocus.ui.TimerState.INITIAL
-import com.example.jetfocus.ui.TimerState.RESUME
-import com.example.jetfocus.ui.TimerState.START
-import com.example.jetfocus.ui.TimerState.STOP
+import com.example.jetfocus.ui.TimerState.Initial
+import com.example.jetfocus.ui.TimerState.Resume
+import com.example.jetfocus.ui.TimerState.Start
+import com.example.jetfocus.ui.TimerState.Stop
 import com.example.jetfocus.ui.theme.JetFocusTheme
 import kotlin.time.Duration.Companion.minutes
 
@@ -45,14 +46,19 @@ fun TimeScreen() {
             modifier = Modifier.align(Alignment.Center)
         ) {
             var timerState by rememberTimerState()
-            CountDownTimer(duration = 25.minutes, state = timerState)
+            CountDownTimer(
+                onFinish = { timerState = Initial },
+                duration = 2.minutes,
+                state = timerState,
+                modifier = Modifier.padding(10.dp),
+            )
             Spacer(modifier = Modifier.height(12.dp))
             TimerControl(
                 state = timerState,
-                onStart = { timerState = START },
-                onResume = { timerState = RESUME },
-                onStop = { timerState = STOP },
-                onCancel = { timerState = INITIAL },
+                onStart = { timerState = Start },
+                onResume = { timerState = Resume },
+                onStop = { timerState = Stop },
+                onCancel = { timerState = Initial },
             )
             Spacer(modifier = Modifier.height(12.dp))
         }
@@ -104,10 +110,10 @@ private fun TimerControl(
         }
     }
     when (state) {
-        INITIAL -> StartButton()
-        START -> StopButton()
-        STOP -> ResumeLayout()
-        RESUME -> StopButton()
+        Initial -> StartButton()
+        Start -> StopButton()
+        Stop -> ResumeLayout()
+        Resume -> StopButton()
     }
 }
 
