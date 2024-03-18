@@ -3,8 +3,11 @@ package com.example.jetfocus.ui
 import android.icu.text.SimpleDateFormat
 import android.view.Choreographer
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -124,7 +127,18 @@ fun CountDownTimer(
         ) {
             val timerFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
             val formattedText = timerFormat.format(Date(countDownDuration.inWholeMilliseconds))
-            Text(modifier = Modifier.align(contentAlignment), text = formattedText, style = style)
+            Column(
+                modifier = Modifier.align(contentAlignment),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Box {
+                    Text(text = formattedText, style = style)
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(onClick = {}) {
+                    Text("#Focus")
+                }
+            }
         }
     }
 }
@@ -253,10 +267,10 @@ fun CountDownTimerPreview() {
 @Composable
 fun Click() {
     var clicked by remember { mutableStateOf(false) }
-    Button({clicked = true}) {
-        if(clicked) {
+    Button({ clicked = true }) {
+        if (clicked) {
             Text("Clicked")
-        }else {
+        } else {
             Text("Click")
         }
     }

@@ -48,9 +48,9 @@ fun TimeScreen() {
             var timerState by rememberTimerState()
             CountDownTimer(
                 onFinish = { timerState = Initial },
-                duration = 2.minutes,
+                duration = 5.minutes,
                 state = timerState,
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier.padding(48.dp),
             )
             Spacer(modifier = Modifier.height(12.dp))
             TimerControl(
